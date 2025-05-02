@@ -1,0 +1,25 @@
+body {
+    background-color: #111;
+    color: #fff;
+    font-family: sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #0ff; /* Cyan */
+    text-shadow: 0 0 10px #0ff;
+    text-align: center;
+}
+
+#game-container {
+    background-color: #222;
+    border: 2px solid #0ff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #0ff;
+}
