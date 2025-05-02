@@ -1,33 +1,45 @@
-const express = require('express');
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
+import http from 'http';
+import fs from 'fs';
+import path from 'path';
+import {fileURLToPath} from 'url';
 
-const app = express();
-const port = process.env.PORT || 3000;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Middleware para archivos estáticos
-app.use(express.static(path.join(__dirname, 'public')));
+const PORT = 3000
 
-// Parsea URL-cuerpos codificados (asi como lo hacen los formularios HTML)
-app.use(express.urlencoded({ extended: true }));
+const server = http.createServer((req, res) => {
+    //obtener URL solicitada
+    let filePath = '.' + req.url;
+    //si la URL es '/' se redirige a 'index.html'
+    if (filePath === '/') {
+        filePath = './public/index.html';
+    }else{  
+        filePath = './public' + req.url;
+    }
 
-// guarda datos en memoria (reemplaza con una base de datos para producción)
-let users = {};
-let gameSessions = {};
-let ranking = [];
-
-// config motor de vizualizacion (aunque servimos archivos estáticos, podemos usar un motor de plantillas para renderizar HTML dinámicamente)
-app.set('view engine', 'html');
-app.engine('html', require('ejs').renderFile);
-app.set('views', path.join(__dirname, 'views'));
-
-// Rutas
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    fs.readFile(path.join(__dirname, filePath), (err, data) => {
+        if (err) {
+            //Si el archivo no existe, devolvemos el 404
+            if(err.code === 'ENOENT') {
+                fs.readFile(path.join(__dirname, './public/404.html'), (err, content) => {
+                        res.writeHead(500, {'Content-Type': 'text/html'});
+                        res.end('Error interno del servidor');
+                    }
+                });
+            }else {
+                //Si hay otro error, devolvemos el 500
+                res.writeHead(500)
+                res.end('Error interno del servidor');
+            }
+        }else {
+            //Si el archivo existe, devolvemos el contenido
+            res.writeHead(200, {'Content-Type': 'text/html'});
+            res.end(data, 'utf-8');
+        }
+    }
 });
 
-// empezar el servidor 
-app.listen(port, () => {
-  console.log(`Juego de Banderas en el puerto ${port}`);
+server.listen(PORT, () => {
+    console.log(`Servidor escuchando en http://localhost:${PORT}`);
 });
