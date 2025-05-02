@@ -1,0 +1,26 @@
+{
+  "name": "web-ii-integrador",
+  "version": "1.0.0",
+  "description": "Juego de Banderas",
+  "main": "spress.js",
+  "scripts": {
+    "start": "node spress.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elise0n/Web-II-Integrador.git"
+  },
+  "keywords": [
+    "web"
+  ],
+  "author": "Eliseo Avaca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Elise0n/Web-II-Integrador/issues"
+  },
+  "homepage": "https://github.com/Elise0n/Web-II-Integrador#readme",
+  "dependencies": {
+    "node": "^22.15.0"
+  }
+}
