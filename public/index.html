@@ -3,15 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trivia Game</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Juego de Banderas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="container">
-        <h1>Trivia Game</h1>
-        <div id="game-container">
-            <!-- Aca se carga todo el contenido -->
+<body class="bg-dark">
+    <div class="container-fluid game-container">
+        <!-- Pantalla de inicio -->
+        <div id="start-screen" class="screen active">
+            <div class="neon-box">
+                <h1 class="neon-text-blue">JUEGO<span class="neon-text-magenta">BANDERAS</span></h1>
+                <p class="neon-text-amber">Pon a prueba tus conocimientos Ingresa tu nombre:</p>
+                <div class="form-group mb-4">
+                    <input type="text" id="player-name" class="form-control neon-input" placeholder="Tu nombre" required>
+                </div>
+                <button id="start-btn" class="neon-btn neon-btn-blue">INICIAR JUEGO</button>
+                <button id="ranking-btn" class="neon-btn neon-btn-magenta mt-3">VER RANKING</button>
+            </div>
+        </div>
+
+        <!-- Pantalla del juego -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <div class="timer-container">
+                    <div class="timer-label neon-text-blue">TIEMPO TOTAL</div>
+                    <div id="total-timer" class="timer neon-text-blue">00:00</div>
+                </div>
+                <div class="question-counter neon-text-amber">
+                    PREGUNTA <span id="current-question">1</span>/10
+                </div>
+                <div class="timer-container">
+                    <div class="timer-label neon-text-magenta">TIEMPO PREGUNTA</div>
+                    <div id="question-timer" class="timer neon-text-magenta">00:00</div>
+                </div>
+            </div>
+
+            <div class="neon-box question-box">
+                <div id="question-type" class="question-type neon-text-amber">Tipo de pregunta</div>
+                <h2 id="question-text" class="question-text neon-text-blue">¿Pregunta?</h2>
+                
+                <div id="flag-container" class="flag-container mb-4">
+                    <!-- La bandera se ingresa aquí cuando sea necesario -->
+                </div>
+                
+                <div id="options-container" class="options-container">
+                    <!-- Las opciones se generarán dinámicamente -->
+                </div>
+            </div>
+
+            <div id="feedback-container" class="feedback-container">
+                <!-- Feedback después de responder -->
+            </div>
+        </div>
+
+        <!-- Pantalla de resultados -->
+        <div id="results-screen" class="screen">
+            <div class="neon-box">
+                <h2 class="neon-text-blue">RESULTADOS</h2>
+                
+                <div class="results-stats">
+                    <div class="stat-item">
+                        <div class="stat-label neon-text-amber">CORRECTAS</div>
+                        <div id="correct-answers" class="stat-value neon-text-green">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label neon-text-amber">INCORRECTAS</div>
+                        <div id="incorrect-answers" class="stat-value neon-text-red">0</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label neon-text-amber">PUNTAJE</div>
+                        <div id="final-score" class="stat-value neon-text-blue">0</div>
+                    </div>
+                </div>
+                
+                <div class="results-times">
+                    <div class="time-item">
+                        <div class="time-label neon-text-magenta">TIEMPO TOTAL</div>
+                        <div id="total-time" class="time-value neon-text-blue">00:00</div>
+                    </div>
+                    <div class="time-item">
+                        <div class="time-label neon-text-magenta">TIEMPO PROMEDIO</div>
+                        <div id="avg-time" class="time-value neon-text-blue">00:00</div>
+                    </div>
+                </div>
+                
+                <button id="play-again-btn" class="neon-btn neon-btn-green mt-4">JUGAR DE NUEVO</button>
+                <button id="results-ranking-btn" class="neon-btn neon-btn-magenta mt-3">VER RANKING</button>
+            </div>
+        </div>
+
+        <!-- Pantalla de ranking -->
+        <div id="ranking-screen" class="screen">
+            <div class="neon-box ranking-box">
+                <h2 class="neon-text-blue">TOP 20 JUGADORES</h2>
+                
+                <div class="table-responsive">
+                    <table class="table table-dark ranking-table">
+                        <thead>
+                            <tr>
+                                <th class="neon-text-amber">#</th>
+                                <th class="neon-text-amber">JUGADOR</th>
+                                <th class="neon-text-amber">PUNTAJE</th>
+                                <th class="neon-text-amber">CORRECTAS</th>
+                                <th class="neon-text-amber">TIEMPO</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ranking-table-body">
+                            <!-- El ranking se generará dinámicamente -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <button id="back-btn" class="neon-btn neon-btn-blue mt-4">VOLVER</button>
+            </div>
         </div>
     </div>
     <script src="script.js"></script>
