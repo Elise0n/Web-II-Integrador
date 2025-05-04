@@ -1,5 +1,5 @@
 // Variables globales
-let countries = [] // Almacenará los datos de países
+let countries = [] // guardara los datos de países
 let currentQuestion = 0 // Índice de la pregunta actual
 let score = 0 // Puntaje acumulado
 let correctAnswers = 0 // Respuestas correctas
