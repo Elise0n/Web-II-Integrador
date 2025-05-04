@@ -12,7 +12,7 @@ const app = express();
 
 
 // Middleware para enviar archivos estáticos desde la carpeta 'public'
-//app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Parsea URL-cuerpos codificados (asi como lo hacen los formularios HTML)
 app.use(express.urlencoded({ extended: true }));
@@ -32,9 +32,9 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.get('/', (req, res) => {
+/*app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', '404.html'));
-});
+});*/
 
 // empezar el servidor 
 app.listen(port, () => {
