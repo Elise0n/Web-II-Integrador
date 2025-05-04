@@ -15,17 +15,17 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Parsea URL-cuerpos codificados (asi como lo hacen los formularios HTML)
-app.use(express.urlencoded({ extended: true }));
+//app.use(express.urlencoded({ extended: true }));
 
 // guarda datos en memoria (reemplaza con una base de datos para producción)
 let users = {};
 let gameSessions = {};
 let ranking = [];
 
-// config motor de vizualizacion (aunque servimos archivos estáticos, podemos usar un motor de plantillas para renderizar HTML dinámicamente)
-app.set('view engine', 'html');
-app.engine('html', require('ejs').renderFile);
-app.set('views', path.join(__dirname, 'views'));
+// config motor de vizualizacion (aunque servimos archivos estáticos, podemos usar un motor de plantillas para renderizar HTML dinámicamente)//
+//app.set('view engine', 'html');
+//app.engine('html', require('ejs').renderFile);
+//app.set('views', path.join(__dirname, 'views'));
 
 // Rutas
 app.get('/', (req, res) => {
