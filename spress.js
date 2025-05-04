@@ -5,7 +5,7 @@ import { fileURLToPath } from 'url';
 // Config del entorno
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const port = 3000; //puerto para el servidor
+const port = process.env.PORT || 3000; //puerto para el servidor
 
 // Crear una instancia de Express
 const app = express();
