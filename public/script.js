@@ -87,20 +87,18 @@ document.addEventListener("DOMContentLoaded", async () => {
  */
 async function loadCountries() {
   try {
-    const response = await fetch("https://restcountries.com/v3.1/all?fields=name,capital,flags,borders")
-    countries = await response.json()
-
-    // Filtrar países que tienen todos los datos necesarios
-    countries = countries.filter(
-      (country) => country.name && country.capital && country.capital.length > 0 && country.flags && country.flags.png,
-    )
-
-    console.log(`Cargados ${countries.length} países`)
+    const response = await fetch("https://restcountries.com/v3.1/all?fields=name,capital,flags,borders");
+    if (!response.ok) {
+      throw new Error('Error al obtener los países');
+    }
+    countries = await response.json();
+    console.log('Países cargados correctamente');
   } catch (error) {
-    console.error("Error al cargar países:", error)
-    throw error
+    console.error('Error al cargar países:', error);
+    alert('Hubo un problema al cargar los datos. Intenta nuevamente más tarde.');
   }
 }
+
 
 /**
  * Inicia el juego
