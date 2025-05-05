@@ -2,7 +2,7 @@
   "name": "web-ii-integrador",
   "version": "1.0.0",
   "description": "Juego de Banderas",
-  "main": "spress.js",
+  "main": "app.js",
   "scripts": {
   "start": "node app.js",
   "dev": "node app.js",
@@ -23,7 +23,8 @@
   },
   "homepage": "https://github.com/Elise0n/Web-II-Integrador#readme",
   "dependencies": {
-    "node": "^22.15.0",
-    "node-fetch": "^3.3.2"
+    "express": "^4.17.1",
+    "path": "^0.12.7",
+    "node-fetch": "^2.6.1"
   }
 }
