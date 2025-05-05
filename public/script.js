@@ -40,7 +40,7 @@ const incorrectAnswersEl = document.getElementById("incorrect-answers")
 const finalScoreEl = document.getElementById("final-score")
 const totalTimeEl = document.getElementById("total-time")
 const avgTimeEl = document.getElementById("avg-time")
-const rankingTableBodyEl = document.getElementById("ranking-table-body")
+const rankingTableBodyEl = document.getElementById("ranking-table-body");
 
 // Tipos de preguntas
 const QUESTION_TYPES = {
@@ -443,40 +443,45 @@ async function saveGame(gameData) {
   }
 }
 
-/**
- * Muestra el ranking de mejores partidas
- */
+// Función para mostrar el ranking
 async function showRanking() {
   try {
     // Obtener ranking del servidor
-    const response = await fetch("/api/ranking")
-    const ranking = await response.json()
+    const response = await fetch("/api/ranking");
+    const ranking = await response.json();
 
-    // Limpiar tabla
-    rankingTableBodyEl.innerHTML = ""
+    // Limpiar la tabla
+    rankingTableBodyEl.innerHTML = "";
 
     // Mostrar ranking
     ranking.forEach((game, index) => {
-      const row = document.createElement("tr")
+      const row = document.createElement("tr");
 
       row.innerHTML = `
-                <td>${index + 1}</td>
-                <td>${game.playerName}</td>
-                <td>${game.score}</td>
-                <td>${game.correctAnswers}</td>
-                <td>${formatTime(game.totalTime)}</td>
-            `
+        <td>${index + 1}</td>
+        <td>${game.playerName}</td>
+        <td>${game.score}</td>
+        <td>${game.correctAnswers}</td>
+        <td>${formatTime(game.totalTime)}</td>
+      `;
 
-      rankingTableBodyEl.appendChild(row)
-    })
+      rankingTableBodyEl.appendChild(row);
+    });
 
     // Mostrar pantalla de ranking
-    hideAllScreens()
-    rankingScreen.classList.add("active")
+    hideAllScreens();
+    rankingScreen.classList.add("active");
   } catch (error) {
-    console.error("Error al cargar el ranking:", error)
-    alert("Error al cargar el ranking. Por favor, inténtalo de nuevo.")
+    console.error("Error al cargar el ranking:", error);
+    alert("Error al cargar el ranking. Por favor, inténtalo de nuevo.");
   }
+}
+
+// Función para dar formato al tiempo
+function formatTime(seconds) {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${minutes.toString().padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
 }
 
 /**

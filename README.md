@@ -1,157 +1,156 @@
-# Web-II-Integrador
-Juego de Banderas
+# Gamer-Themed Trivia Game
 
-Un divertido e interactivo juego de preguntas y repuestas, pone a prueba tus conocimientos sobre paises de todo el mundo ya sea como sus banderas, capitales y paises limitrofes.
+A fun, interactive trivia game with a gamer aesthetic that tests your knowledge about countries around the world. The game features neon styling, multiple question types, and a competitive leaderboard.
 
-## Características
+![Trivia Game Screenshot](screenshot.png)
 
-- 🎮 Interfaz de usuario con temática de juego, colores neón y un diseño atractivo
-- 🌍 Utiliza la API de restcountries.com para obtener datos auténticos de los países
-- 🎯 Tres tipos de preguntas diferentes:
-- Identificación de la capital
-- Reconocimiento de la bandera
-- Conteo de países limítrofes
-- ⏱️ Registro del tiempo en cada sesión de juego
-- 🏆 Tabla de clasificación con los 20 mejores jugadores
-- 📊 Estadísticas del juego, incluyendo puntuación, respuestas correctas/incorrectas y tiempo
+## Features
 
-## Technologias usadas
+- 🎮 Gamer-themed UI with neon colors and engaging design
+- 🌍 Uses the restcountries.com API for authentic country data
+- 🎯 Three different question types:
+  - Capital city identification
+  - Flag recognition
+  - Border country counting
+- ⏱️ Time tracking for each game session
+- 🏆 Leaderboard showing top 20 players
+- 📊 Game statistics including score, correct/incorrect answers, and time
 
-- **Backend**: Node.js con Express
-- **Frontend**: HTML, CSS (Bootstrap), y vanilla JavaScript
+## Technologies Used
+
+- **Backend**: Node.js with Express
+- **Frontend**: HTML, CSS (Bootstrap), and vanilla JavaScript
 - **API**: RESTCountries API (restcountries.com)
 - **Deployment**: Render
 
-## Instalación y configuración
+## Installation and Setup
 
-1. Clonar el repositorio:
-\`\`\`
-git clone https://github.com/Elise0n/Web-II-Integrador.git
-\`\`\`
+1. Clone the repository:
+   \`\`\`
+   git clone https://github.com/yourusername/trivia-game.git
+   cd trivia-game
+   \`\`\`
 
-2. Instalar las dependencias:
-\`\`\`
-npm install
-\`\`\`
+2. Install dependencies:
+   \`\`\`
+   npm install
+   \`\`\`
 
-3. Iniciar el servidor:
-\`\`\`
-npm start
-\`\`\`
+3. Start the server:
+   \`\`\`
+   npm start
+   \`\`\`
 
-4. Abrir el navegador y navegar a:
-\`\`\`
-http://localhost:3000
-\`\`\`
+4. Open your browser and navigate to:
+   \`\`\`
+   http://localhost:3000
+   \`\`\`
 
-## Documentación de la API
+## API Documentation
 
-El juego proporciona los siguientes puntos finales de la API:
+The game provides the following API endpoints:
 
-### Iniciar una nueva partida
+### Start a New Game
 - **URL**: `/start`
-- **Método**: `POST`
-- **Descripción**: Inicializa una nueva sesión de juego y devuelve la primera pregunta
-- **Respuesta**:
-\`\`\`json
-{
-"userId": "random-user-id",
-"question": {
-"type": 0,
-"question": "¿Cuál es el país de la capital, París?",
-"correctAnswer": "Francia",
-"options": ["Francia", "Alemania", "España", "Italia"]
-}
-}
-\`\`\`
+- **Method**: `POST`
+- **Description**: Initializes a new game session and returns the first question
+- **Response**: 
+  \`\`\`json
+  {
+    "userId": "random-user-id",
+    "question": {
+      "type": 0,
+      "question": "What is the country of the capital city Paris?",
+      "correctAnswer": "France",
+      "options": ["France", "Germany", "Spain", "Italy"]
+    }
+  }
+  \`\`\`
 
-### Obtener una pregunta
+### Get a Question
 - **URL**: `/question`
-- **Método**: `GET`
-- **Parámetros de consulta**: `userId`
-- **Descripción**: Obtiene la pregunta actual del usuario especificado
-- **Respuesta**:
-\`\`\`json
-{
-"type": 1,
-"question": "¿Qué país representa esta bandera?",
-"correctAnswer": "Japón",
-"flag": "https://restcountries.com/data/jpn.svg",
-"options": ["China", "Japón", "Corea del Sur", "Vietnam"]
-}
-\`\`\`
+- **Method**: `GET`
+- **Query Parameters**: `userId`
+- **Description**: Retrieves the current question for the specified user
+- **Response**: 
+  \`\`\`json
+  {
+    "type": 1,
+    "question": "This flag represents which country?",
+    "correctAnswer": "Japan",
+    "flag": "https://restcountries.com/data/jpn.svg",
+    "options": ["China", "Japan", "South Korea", "Vietnam"]
+  }
+  \`\`\`
 
-### Enviar una respuesta
+### Submit an Answer
 - **URL**: `/answer`
-- **Método**: `POST`
-- **Parámetros del cuerpo**: `userId`, `answer`
-- **Descripción**: Envía una respuesta e indica si es correcta
-- **Respuesta**:
-\`\`\`json
-{
-"correct": true,
-"message": "¡Correcto!"
-}
-\`\`\`
+- **Method**: `POST`
+- **Body Parameters**: `userId`, `answer`
+- **Description**: Submits an answer and returns whether it was correct
+- **Response**: 
+  \`\`\`json
+  {
+    "correct": true,
+    "message": "Correct!"
+  }
+  \`\`\`
 
-### Obtener estadísticas del juego
+### Get Game Statistics
 - **URL**: `/stats`
-- **Método**: `GET`
-- **Parámetros de consulta**: `userId`
-- **Descripción**: Obtiene las estadísticas del juego actual
-- **Respuesta**:
-\`\`\`json
-{
-"score": 28,
-"correctAnswers": 8,
-"incorrectAnswers": 2,
-"totalTime": 120.5,
-"averageTime": 12.05
-}
-\`\`\`
+- **Method**: `GET`
+- **Query Parameters**: `userId`
+- **Description**: Retrieves statistics for the current game
+- **Response**: 
+  \`\`\`json
+  {
+    "score": 28,
+    "correctAnswers": 8,
+    "incorrectAnswers": 2,
+    "totalTime": 120.5,
+    "averageTime": 12.05
+  }
+  \`\`\`
 
-### Obtener clasificación
+### Get Ranking
 - **URL**: `/ranking`
-- **Método**: `GET`
-- **Descripción**: Obtiene los 20 mejores jugadores clasificados por puntuación
-- **Respuesta**:
-\`\`\`json
-[
-{
-"userId": "usuario1",
-"puntuación": 42,
-"respuestascorrectas": 10,
-"respuestasincorrectas": 0,
-"horaInicio": 1621500000000
-},
-// Más entradas...
-]
+- **Method**: `GET`
+- **Description**: Retrieves the top 20 players ranked by score
+- **Response**: 
+  \`\`\`json
+  [
+    {
+      "userId": "user1",
+      "score": 42,
+      "correctAnswers": 10,
+      "incorrectAnswers": 0,
+      "startTime": 1621500000000
+    },
+    // More entries...
+  ]
+  \`\`\`
+
+## How to Play
+
+1. Open the game in your browser
+2. Click "Start Game" to begin
+3. Answer each question by selecting one of the provided options
+4. After answering all 10 questions, you'll see your final score and statistics
+5. Check the leaderboard to see how you rank against other players
+
+## Project Structure
+
+\`\`\`
+trivia-game/
+├── app.js                # Main server file with API endpoints
+├── package.json          # Project dependencies
+├── public/               # Frontend files
+│   ├── index.html        # Main HTML file
+│   ├── style.css         # CSS styling
+│   └── script.js         # Frontend JavaScript
+└── README.md             # This file
 \`\`\`
 
-## Cómo jugar
+## License
 
-0. Abre el juego en tu navegador.
-1. Ingresa tu nombre [ID]
-2. Haz clic en "Iniciar juego" para empezar.
-3. Responde a cada pregunta seleccionando una de las opciones proporcionadas.
-4. Después de responder las 10 preguntas, verás tu puntuación final y las estadísticas.
-5. Consulta la tabla de clasificación para ver tu posición en comparación con otros jugadores.
-
-## Estructura del proyecto
-
-\`\`\`
-Web-II-Integrador
-├── app.js # Conexion con la api y el juego y guardado de mismos datos
-├── spress.js # Archivo del servidor principal con los puntos finales de la API
-├── package.json # Dependencias del proyecto
-├── public/ # Archivos del frontend
-| ├── 404.html # En caso de error muestra este html
-│ ├── index.html # Archivo HTML principal
-│ ├── style.css # Estilo CSS
-│ └── script.js # JavaScript para frontend
-└── README.md # Este archivo
-\`\`\`
-
-## Licencia
-
-Licencia ISC
+MIT License

@@ -20,12 +20,29 @@ app.use(express.static(path.join(__dirname, 'public')));
 // guarda datos en memoria (reemplaza con una base de datos para producción)
 let users = {};
 let gameSessions = {};
-let ranking = [];
+// Array para almacenar el ranking
+let gameRanking = [];
 
-// config motor de vizualizacion (aunque servimos archivos estáticos, podemos usar un motor de plantillas para renderizar HTML dinámicamente)//
-//app.set('view engine', 'html');
-//app.engine('html', require('ejs').renderFile);
-//app.set('views', path.join(__dirname, 'views'));
+// Ruta para guardar el resultado del juego
+app.post('/api/games', (req, res) => {
+  const gameData = req.body;
+ // Guardamos los datos de la partida
+ gameRanking.push(gameData);
+
+ // Ordenamos el ranking en función del puntaje (descendente)
+ gameRanking = gameRanking.sort((a, b) => b.score - a.score);
+
+ // Limitar a los 20 primeros jugadores
+ gameRanking = gameRanking.slice(0, 20);
+
+ // Respondemos con éxito
+ res.status(200).json({ message: 'Juego guardado correctamente', ranking: gameRanking });
+});
+
+// Ruta para obtener el ranking
+app.get('/api/ranking', (req, res) => {
+ res.status(200).json(gameRanking);
+});  
 
 // Rutas
 app.get('/', (req, res) => {
