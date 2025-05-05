@@ -22,9 +22,7 @@ app.use(express.static(path.join(__dirname, "public")))
 const users = {} // Almacena datos de usuarios
 const gameSessions = {} // Almacena sesiones de juego
 const ranking = [] // Almacena el rankingimport express from "express"
-import path from "path"
-import { fileURLToPath } from "url"
-import fetch from "node-fetch"
+
 
 // Config del entorno
 const __filename = fileURLToPath(import.meta.url)
