@@ -15,10 +15,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Middleware para servir archivos estáticos
+// Middleware para servir archivos estáticos desde la carpeta "public"
 app.use(express.static(path.join(__dirname, "public")));
 
-// Almacenamiento en memoria
+// Almacenamiento en memoria user y partidas
 const users = {}; // Almacena datos de usuarios
 const gameSessions = {}; // Almacena sesiones de juego
 const ranking = []; // Almacena el ranking

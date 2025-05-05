@@ -82,9 +82,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 })
 
-/**
- * Carga los datos de países desde la API
- */
+
+ //Carga los datos de países desde la API
+
 async function loadCountries() {
   try {
     const response = await fetch("https://restcountries.com/v3.1/all?fields=name,capital,flags,borders");
@@ -100,9 +100,9 @@ async function loadCountries() {
 }
 
 
-/**
- * Inicia el juego
- */
+
+//Inicia el juego
+ 
 function startGame() {
   currentPlayer = playerNameInput.value.trim()
 
@@ -132,9 +132,9 @@ function startGame() {
   showQuestion(currentQuestion)
 }
 
-/**
- * Genera 10 preguntas aleatorias para el juego
- */
+
+ //Genera 10 preguntas aleatorias para el juego
+ 
 function generateQuestions() {
   questions = []
 
@@ -153,9 +153,9 @@ function generateQuestions() {
   questions = shuffleArray(questions)
 }
 
-/**
- * Genera una pregunta del tipo especificado
- */
+
+ //Genera una pregunta del tipo especificado
+
 function generateQuestion(questionType) {
   const randomCountryIndex = Math.floor(Math.random() * countries.length)
   const correctCountry = countries[randomCountryIndex]
@@ -167,7 +167,7 @@ function generateQuestion(questionType) {
     countryData: correctCountry,
   }
 
-  // Configurar la pregunta según su tipo
+  // Configurar la pregunta segun su tipo
   switch (questionType.id) {
     case "capital":
       question.text = `¿Cuál es el país de la capital ${correctCountry.capital[0]}?`
@@ -203,9 +203,9 @@ function generateQuestion(questionType) {
   return question
 }
 
-/**
- * Genera opciones para una pregunta, incluyendo la respuesta correcta
- */
+
+ // Genera opciones para una pregunta, incluyendo la respuesta correcta
+
 function generateOptions(correctAnswer, property) {
   const options = [correctAnswer]
 
@@ -224,18 +224,18 @@ function generateOptions(correctAnswer, property) {
   return shuffleArray(options)
 }
 
-/**
- * Obtiene un tipo de pregunta aleatorio
- */
+
+ // Obtiene un tipo de pregunta aleatorio
+ 
 function getRandomQuestionType() {
   const types = [QUESTION_TYPES.CAPITAL, QUESTION_TYPES.FLAG, QUESTION_TYPES.BORDERS]
   const randomIndex = Math.floor(Math.random() * types.length)
   return types[randomIndex]
 }
 
-/**
- * Mezcla un array (algoritmo Fisher-Yates)
- */
+
+  //Mecla un array (algoritmo Fisher-Yates)
+ 
 function shuffleArray(array) {
   const newArray = [...array]
   for (let i = newArray.length - 1; i > 0; i--) {
@@ -245,9 +245,9 @@ function shuffleArray(array) {
   return newArray
 }
 
-/**
- * Inicia los temporizadores del juego
- */
+
+ //Inicia los temporizadores del juego
+ 
 function startTimers() {
   // Tiempo total del juego
   gameStartTime = new Date()
@@ -262,9 +262,9 @@ function startTimers() {
   startQuestionTimer()
 }
 
-/**
- * Inicia el temporizador para la pregunta actual
- */
+
+ //Inicia el temporizador para la pregunta actual
+ 
 function startQuestionTimer() {
   // Reiniciar el temporizador de la pregunta anterior
   if (questionInterval) {
@@ -279,18 +279,18 @@ function startQuestionTimer() {
   }, 1000)
 }
 
-/**
- * Formatea el tiempo en segundos a formato MM:SS
- */
+
+ //Formatea el tiempo en segundos a formato MM:SS
+ 
 function formatTime(seconds) {
   const minutes = Math.floor(seconds / 60)
   const remainingSeconds = seconds % 60
   return `${minutes.toString().padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`
 }
 
-/**
- * Muestra la pregunta actual
- */
+
+ //Muestra la pregunta actual
+ 
 function showQuestion(index) {
   const question = questions[index]
 
@@ -330,9 +330,9 @@ function showQuestion(index) {
   startQuestionTimer()
 }
 
-/**
- * Verifica la respuesta seleccionada
- */
+
+// Verifica la respuesta seleccionada
+ 
 function checkAnswer(selectedAnswer) {
   const question = questions[currentQuestion]
   const isCorrect = selectedAnswer === question.correctAnswer
@@ -342,7 +342,7 @@ function checkAnswer(selectedAnswer) {
   const questionTime = Math.floor((currentTime - questionStartTime) / 1000)
   questionTimes.push(questionTime)
 
-  // Actualizar estadísticas
+  // Actualizar estadisticas
   if (isCorrect) {
     score += question.type.points
     correctAnswers++
@@ -377,9 +377,9 @@ function checkAnswer(selectedAnswer) {
   }, 2000)
 }
 
-/**
- * Muestra feedback después de responder
- */
+
+ //Muestra feedback después de responder
+ 
 function showFeedback(isCorrect, correctAnswer) {
   feedbackContainerEl.innerHTML = isCorrect
     ? '<p class="feedback-correct">¡Correcto! +' + questions[currentQuestion].type.points + " puntos</p>"
@@ -388,9 +388,9 @@ function showFeedback(isCorrect, correctAnswer) {
   feedbackContainerEl.style.display = "block"
 }
 
-/**
- * Finaliza el juego y muestra los resultados
- */
+
+ //Finaliza el juego y muestra los resultados
+ 
 function endGame() {
   // Detener temporizadores
   clearInterval(gameInterval)
@@ -420,9 +420,9 @@ function endGame() {
   resultsScreen.classList.add("active")
 }
 
-/**
- * Guarda la partida en el servidor
- */
+
+ //Guarda la partida en el servidor
+ 
 async function saveGame(gameData) {
   try {
     const response = await fetch("/api/games", {
@@ -484,9 +484,8 @@ function formatTime(seconds) {
   return `${minutes.toString().padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
 }
 
-/**
- * Oculta todas las pantallas
- */
+
+ //Oculta todas las pantallas
 function hideAllScreens() {
   startScreen.classList.remove("active")
   gameScreen.classList.remove("active")
@@ -494,9 +493,9 @@ function hideAllScreens() {
   rankingScreen.classList.remove("active")
 }
 
-/**
- * Reinicia el juego
- */
+
+ //Reinicia el juego
+
 function resetGame() {
   hideAllScreens()
   startScreen.classList.add("active")
