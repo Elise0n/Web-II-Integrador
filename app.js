@@ -23,27 +23,6 @@ const users = {} // Almacena datos de usuarios
 const gameSessions = {} // Almacena sesiones de juego
 const ranking = [] // Almacena el rankingimport express from "express"
 
-
-// Config del entorno
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
-const port = process.env.PORT || 3000
-
-// Crear una instancia de Express
-const app = express()
-
-// Middleware para parsear JSON y formularios
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-
-// Middleware para servir archivos estáticos
-app.use(express.static(path.join(__dirname, "public")))
-
-// Almacenamiento en memoria
-const users = {} // Almacena datos de usuarios
-const gameSessions = {} // Almacena sesiones de juego
-const ranking = [] // Almacena el ranking
-
 // Function to generate a random question
 async function generateQuestion(country) {
   const questionType = Math.floor(Math.random() * 3) // 0, 1, o 2
