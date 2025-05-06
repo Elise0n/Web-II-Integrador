@@ -21,7 +21,7 @@ Un juego de trivia interactivo y divertido con estética gamer que pone a prueba
 - **Backend**: Node.js con Express
 - **Frontend**: HTML, CSS (Bootstrap) y JavaScript puro.
 - **API**: RESTCountries API (restcountries.com).
-- **Deployment**: Vercel
+- **Despliegue**: Vercel
 
 ## Instalación y Configuración
 
